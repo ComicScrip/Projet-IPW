@@ -7,7 +7,7 @@ Le but du projet est de réaliser une application de gestion de notes pour les e
 - Un utilisateur inscrit dont le compte a été validé par un administrateur est un enseignant
 - Un enseignant peut ajouter une épreuve à sa liste d'épreuve
 - Un enseignant peut ajouter une matière à sa liste de matières
-- Une matière est caractérisée par un titre et une période de temps (début et fin desinterventions)
+- Une matière est caractérisée par un titre et une période de temps (début et fin des interventions)
 - Une épreuve est caractérisée par un titre et une date d'examen
 - Une matière est constituée d'une ou plusieurs épreuves
 - Une matière concerne une liste d'étudiants
@@ -20,15 +20,18 @@ Le but du projet est de réaliser une application de gestion de notes pour les e
 - Un enseignant peut inviter un étudiant en précisant son nom, son prénom et son adresse email
 - Lorsqu'un enseignant invite un étudiant, ce dernier reçoit une invitation par email
 
-#Analyse
+# Analyse
 
-Coming soon
+## Modèle de données
+![first version of the application model](https://raw.githubusercontent.com/ComicScrip/Projet-IPW/dev/analysis/appmodelv1.png)
 
-#Installation
+# Installation
 ```bash
 $ git clone git@github.com:ComicScrip/Projet-IPW.git
+$ cd Projet-IPW
+$ bundle install
 ```
-##Mise en place d'une BDD PostgreSQL
+## Mise en place d'une BDD PostgreSQL
 
 ```bash
 $ sudo -u postgres psql
