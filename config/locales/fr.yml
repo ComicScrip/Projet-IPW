@@ -1,0 +1,27 @@
+fr:
+  helpers:
+    label:
+      user:
+        remember_me: 'Se souvenir de moi'
+  errors :
+    format: "%{message}"
+  activerecord:
+    attributes:
+      user:
+        firstName: 'Prénom'
+        lastName: 'Nom'
+        password: 'Mot de passe'
+        password_confirmation: 'Confirmation du mot de passe'
+        email: 'Adresse e-mail'
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: 'Cette adresse email figure déjà dans notre base de donnée.'
+              blank: 'Vous devez rengeigner une addresse e-mail'
+            password:
+              too_short: 'Le mot de passe est trop court.'
+              blank: 'Vous devez choisir un mot de passe.'
+            password_confirmation:
+              confirmation: 'Les mots de passe ne corresspondent pas.'

@@ -1,0 +1,19 @@
+%h2 Changer de mot de passe
+= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+  = render 'layouts/error_messages', object: resource
+  = f.hidden_field :reset_password_token
+  .field
+    = f.label :password, "Nouveau mot de passe"
+    %br/
+    - if @minimum_password_length
+      %em
+        (#{@minimum_password_length} characters minimum)
+      %br/
+    = f.password_field :password, autofocus: true, autocomplete: "off"
+  .field
+    = f.label :password_confirmation, "Confirmer le nouveau mot de passe"
+    %br/
+    = f.password_field :password_confirmation, autocomplete: "off"
+  .actions
+    = f.submit "Changer mon mot de passe"
+= render "users/shared/links"
