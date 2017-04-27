@@ -21,7 +21,7 @@
         %div#navbar.navbar-collapse.collapse
           %ul.nav.navbar-nav
             %li= link_to "Acueuil", root_url
-            %li= link_to "Gestion des utilisateurs", users_path if can? :manage, :all
+            %li= link_to "Gestion des utilisateurs", users_path if can? :manage, User
           %ul.nav.navbar-nav.navbar-right
             %li= link_to "Se déconnecter", destroy_session_path("user") if user_signed_in?
             %li= link_to "Se connecter", new_session_path("user") unless user_signed_in?

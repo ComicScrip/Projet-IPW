@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     get "/signout" => "users/sessions#destroy", as: "destroy_user_session"
     get "/signup" => "users/registrations#new", as: "new_user_registration"
   end
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :edit, :destroy, :update]
   devise_for :users, skip: [:sessions], controllers: {registrations: 'users/registrations', passwords: 'users/passwords'}
   root 'welcome#index'
 end

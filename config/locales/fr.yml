@@ -8,6 +8,7 @@ fr:
   activerecord:
     attributes:
       user:
+        approved: 'Compte activé'
         firstName: 'Prénom'
         lastName: 'Nom'
         password: 'Mot de passe'
