@@ -1,0 +1,26 @@
+%h1 Modifier un utilisateur
+
+= form_for @user do |f|
+  = render 'layouts/error_messages', object: @user
+  .field
+    = f.label :approved
+    %br
+    = f.check_box :approved
+  .field
+    = f.label :firstName
+    %br/
+    = f.text_field :firstName
+  .field
+    = f.label :lastName
+    %br/
+    = f.text_field :lastName
+  .field
+    = f.label :email
+    %br/
+    = f.email_field :email, autofocus: true
+  .field
+
+  .actions
+    = f.submit "Mettre à jour"
+
+= link_to 'Revenir à la liste des utilisateurs', users_path
