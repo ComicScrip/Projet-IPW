@@ -38,3 +38,12 @@ $ sudo -u postgres psql
 postgres=# create user "ipw_user" with password 'ipw';
 postgres=# create database "Projet-IPW_development" owner "ipw_user"; 
 ```
+
+## Mise en place des des variables d'environnement
+
+Creer un fichier 'config/local_env.yml' avec le contenu suivant :
+```yml
+# Identifiants Gmail qui seront utilisés pour l'envoi de mails à partir de l'application
+ASSESSME_GMAIL_ACCOUNT : <votre adresse gmail>
+ASSESSME_GMAIL_PASSWORD : <le mot de passe de votre compte>
+```

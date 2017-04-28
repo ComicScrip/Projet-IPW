@@ -1,0 +1,29 @@
+%h2 Demander la creation d'un compte
+= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+  = render 'layouts/error_messages', object: resource
+  .field
+    = f.label :firstName
+    %br/
+    = f.text_field :firstName
+  .field
+    = f.label :lastName
+    %br/
+    = f.text_field :lastName
+  .field
+    = f.label :email
+    %br/
+    = f.email_field :email, autofocus: true
+  .field
+    = f.label :password
+    - if @minimum_password_length
+      %em
+        (#{@minimum_password_length} caractères minimum)
+    %br/
+    = f.password_field :password, autocomplete: "off"
+  .field
+    = f.label :password_confirmation
+    %br/
+    = f.password_field :password_confirmation, autocomplete: "off"
+  .actions
+    = f.submit "Valider"
+= render "users/shared/links"
