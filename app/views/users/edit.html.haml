@@ -1,11 +1,20 @@
-%h1 Modifier un utilisateur
+%h1 Edition du compte de #{@user.firstName} #{@user.lastName}
 
 = form_for @user do |f|
   = render 'layouts/error_messages', object: @user
   .field
     = f.label :approved
-    %br
     = f.check_box :approved
+
+  %h2 Roles
+
+  - Role.all.each do | available_role |
+    = check_box('userRoles', available_role.name, {checked: (@user.has_role? available_role.name)}, '1')
+    = label 'userRoles', available_role.name, available_role.name
+    %br
+
+  %h2 Informations du profil
+
   .field
     = f.label :firstName
     %br/
