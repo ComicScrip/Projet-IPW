@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @discipline.name %>
+</p>
+
+<p>
+  <strong>Beginson:</strong>
+  <%= @discipline.beginsOn %>
+</p>
+
+<p>
+  <strong>Endson:</strong>
+  <%= @discipline.endsOn %>
+</p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @discipline.owner %>
+</p>
+
+<%= link_to 'Edit', edit_discipline_path(@discipline) %> |
+<%= link_to 'Back', disciplines_path %>

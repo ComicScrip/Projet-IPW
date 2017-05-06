@@ -1,11 +1,13 @@
 class User < ApplicationRecord
+  has_many :teached_disciplines, class_name: 'Discipline', inverse_of: 'owner'
+  has_and_belongs_to_many :studied_disciplines, class_name: 'Discipline'
+  has_many :exams, through: :assessments
+
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
-  after_create :send_admins_mail
 
   def active_for_authentication?
     super && approved?
@@ -17,9 +19,5 @@ class User < ApplicationRecord
     else
       super # Use whatever other message
     end
-  end
-
-  def send_admins_mail
-    AdminMailer.new_user_waiting_for_approval(self).deliver
   end
 end

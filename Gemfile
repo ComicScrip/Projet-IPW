@@ -38,6 +38,9 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  # Testing tools
+  gem 'rspec-rails', '~> 3.5'
+  gem 'factory_girl_rails'
 end
 
 group :development do
@@ -59,6 +62,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # User management
 gem 'devise'
+gem 'devise_invitable'
 # authorization management
 gem 'cancancan'
 # roles management

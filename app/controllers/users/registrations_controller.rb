@@ -1,6 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  after_action :send_admins_email, only: :create
 
   # GET /resource/sign_up
   # def new
@@ -8,9 +9,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+  end
 
   # GET /resource/edit
   # def edit
@@ -64,5 +65,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     def account_update_params
       params.require(:user).permit(:firstName, :lastName, :email, :password, :password_confirmation, :current_password)
+    end
+    def send_admins_email
+      if resource.persisted?
+        AdminMailer.new_user_waiting_for_approval(resource).deliver
+      end
     end
 end

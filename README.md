@@ -37,6 +37,7 @@ $ bundle install
 $ sudo -u postgres psql
 postgres=# create user "ipw_user" with password 'ipw';
 postgres=# create database "Projet-IPW_development" owner "ipw_user"; 
+postgres=# create database "Projet-IPW_test" owner "ipw_user"; 
 ```
 
 ## Mise en place des des variables d'environnement
