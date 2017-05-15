@@ -41,6 +41,8 @@ group :development, :test do
   # Testing tools
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails'
+  gem 'guard-rspec', require: false
+  gem 'rails-controller-testing'
 end
 
 group :development do
@@ -71,5 +73,10 @@ gem 'rolify'
 # HAML template engine for views
 gem 'haml'
 gem 'html2haml'
+
+#JS plugins
+gem 'select2-rails'
+
+
 
 

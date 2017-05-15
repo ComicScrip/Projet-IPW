@@ -35,11 +35,11 @@ ActiveRecord::Schema.define(version: 20170505153522) do
     t.index ["owner_id"], name: "index_disciplines_on_owner_id", using: :btree
   end
 
-  create_table "disciplines_students", id: false, force: :cascade do |t|
-    t.integer "student_id",    null: false
+  create_table "disciplines_users", id: false, force: :cascade do |t|
+    t.integer "user_id",       null: false
     t.integer "discipline_id", null: false
-    t.index ["discipline_id"], name: "index_disciplines_students_on_discipline_id", using: :btree
-    t.index ["student_id"], name: "index_disciplines_students_on_student_id", using: :btree
+    t.index ["discipline_id"], name: "index_disciplines_users_on_discipline_id", using: :btree
+    t.index ["user_id"], name: "index_disciplines_users_on_user_id", using: :btree
   end
 
   create_table "exams", force: :cascade do |t|

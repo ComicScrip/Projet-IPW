@@ -1,0 +1,10 @@
+%p#notice= notice
+%p
+  %strong Title:
+  = @exam.title
+%p
+  %strong Date:
+  = @exam.date
+= link_to 'Edit', edit_exam_path(@exam)
+|
+= link_to 'Back', exams_path

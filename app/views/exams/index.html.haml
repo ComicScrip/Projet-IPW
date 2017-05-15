@@ -1,0 +1,22 @@
+%h1
+  Mes Examens
+
+%table.table
+  %tr
+    %th Nom de la matière
+    %th Titre de l'examen
+    %th Date de l'examen
+    %th Gestion des notes
+    %th Modifier
+    %th Supprimer
+
+  - @exams.each do |e|
+    %tr
+      %td= e.discipline.name
+      %td= e.title
+      %td= e.date
+      %td= link_to 'Gérer les notes', exam_edit_assessments_path(e)
+      %td= link_to 'Modifier', edit_exam_path(e)
+      %td= link_to 'Supprimer', exam_path(e), method: :delete, data: { confirm: 'êtes vous sûr ?' }
+
+= link_to 'Ajouter un examen', new_exam_path

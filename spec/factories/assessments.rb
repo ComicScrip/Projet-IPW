@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :assessment do
-    grade 1.5
-    user nil
+    grade 15
+    association :student, factory: :user
+    exam
   end
 end

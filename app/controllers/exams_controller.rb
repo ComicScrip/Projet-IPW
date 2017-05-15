@@ -2,13 +2,11 @@ class ExamsController < ApplicationController
   before_action :set_exam, only: [:show, :edit, :update, :destroy]
 
   # GET /exams
-  # GET /exams.json
   def index
-    @exams = Exam.all
+    @exams = Exam.belonging_to_teacher(current_user)
   end
 
   # GET /exams/1
-  # GET /exams/1.json
   def show
   end
 
@@ -19,46 +17,49 @@ class ExamsController < ApplicationController
 
   # GET /exams/1/edit
   def edit
+
+  end
+
+  def edit_assessments
+    @exam = Exam.find(params[:exam_id])
+    students_for_exam = @exam.discipline.students
+
+    @assessments = []
+    students_for_exam.each { |s|
+      @assessments << Assessment.find_or_create_by(student: s, exam: @exam)
+    }
   end
 
   # POST /exams
-  # POST /exams.json
   def create
     @exam = Exam.new(exam_params)
 
-    respond_to do |format|
-      if @exam.save
-        format.html { redirect_to @exam, notice: 'Exam was successfully created.' }
-        format.json { render :show, status: :created, location: @exam }
-      else
-        format.html { render :new }
-        format.json { render json: @exam.errors, status: :unprocessable_entity }
-      end
+    if @exam.save
+      redirect_to exams_path, notice: 'L\'examen a été créé avec succès.'
+    else
+      render 'new'
     end
   end
 
   # PATCH/PUT /exams/1
-  # PATCH/PUT /exams/1.json
   def update
-    respond_to do |format|
-      if @exam.update(exam_params)
-        format.html { redirect_to @exam, notice: 'Exam was successfully updated.' }
-        format.json { render :show, status: :ok, location: @exam }
-      else
-        format.html { render :edit }
-        format.json { render json: @exam.errors, status: :unprocessable_entity }
-      end
+    if @exam.update(exam_params)
+      redirect_to exams_path, notice: 'L\'examen a bien été mise à jour.'
+    else
+      render 'edit'
     end
   end
 
+  def update_assessments
+    assessments = params[:assessments]
+    Assessment.update(assessments.keys, assessments.values)
+    redirect_to exam_edit_assessments_path, notice: 'Les notes ont bien été mises à jour.'
+  end
+
   # DELETE /exams/1
-  # DELETE /exams/1.json
   def destroy
     @exam.destroy
-    respond_to do |format|
-      format.html { redirect_to exams_url, notice: 'Exam was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to exams_url, notice: 'L\'examen a bien été supprimé'
   end
 
   private
@@ -69,6 +70,6 @@ class ExamsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def exam_params
-      params.require(:exam).permit(:title, :date)
+      params.require(:exam).permit(:title, :date, :discipline_id)
     end
 end

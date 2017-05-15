@@ -1,5 +1,61 @@
 fr:
+  date:
+    abbr_day_names:
+      - dim
+      - lun
+      - mar
+      - mer
+      - jeu
+      - ven
+      - sam
+    abbr_month_names:
+      -
+      - jan.
+      - fév.
+      - mar.
+      - avr.
+      - mai
+      - juin
+      - juil.
+      - août
+      - sept.
+      - oct.
+      - nov.
+      - déc.
+    day_names:
+      - dimanche
+      - lundi
+      - mardi
+      - mercredi
+      - jeudi
+      - vendredi
+      - samedi
+    formats:
+      default: "%d/%m/%Y"
+      short: "%e %b"
+      long: "%e %B %Y"
+    month_names:
+      -
+      - janvier
+      - février
+      - mars
+      - avril
+      - mai
+      - juin
+      - juillet
+      - août
+      - septembre
+      - octobre
+      - novembre
+      - décembre
+    order:
+      - :day
+      - :month
+      - :year
   helpers:
+    submit:
+      create: "Enregistrer"
+      update: "Enregistrer"
     label:
       user:
         remember_me: 'Se souvenir de moi'
@@ -14,6 +70,15 @@ fr:
         password: 'Mot de passe'
         password_confirmation: 'Confirmation du mot de passe'
         email: 'Adresse e-mail'
+      discipline:
+        name: 'Nom'
+        beginsOn: 'Début des interventions'
+        endsOn: 'Fin des interventions'
+      exam:
+        title: "Titre de l'examen"
+        date: "Date de l'examen"
+        discipline: "Matière évaluée"
+
     errors:
       models:
         user:
@@ -26,3 +91,13 @@ fr:
               blank: 'Vous devez choisir un mot de passe.'
             password_confirmation:
               confirmation: 'Les mots de passe ne corresspondent pas.'
+        discipline:
+          attributes:
+            name:
+              blank: 'Vous devez renseigner un nom pour cette matière.'
+        exam:
+          attributes:
+            title:
+              blank: 'Vous devez renseigner un titre pour cet examen.'
+            discipline:
+              required: 'Vous devez selectionner la matière évaluée lors de cet examen'

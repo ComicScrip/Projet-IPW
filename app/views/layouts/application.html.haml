@@ -7,7 +7,7 @@
     = stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     = javascript_include_tag 'application'
     = javascript_include_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-  %body
+  %body{"data-controller": controller.controller_name, "data-action": controller.action_name}
     %nav.navbar.navbar-default
       .container
         .navbar-header
@@ -20,9 +20,10 @@
           %a.navbar-brand{ :href => root_url} AssessMe
         %div#navbar.navbar-collapse.collapse
           %ul.nav.navbar-nav
-            %li= link_to "Acueuil", root_url
             %li= link_to "Gestion des utilisateurs", users_path if can? :manage, User
             %li= link_to "Inviter des utilisateurs", new_user_invitation_path if can? :invite, User
+            %li= link_to "Gérer mes matières", disciplines_path if can? :manage, Discipline
+            %li= link_to "Gérer mes examens", exams_path if can? :manage, Exam
           %ul.nav.navbar-nav.navbar-right
             %li= link_to "Se déconnecter", destroy_session_path("user") if user_signed_in?
             %li= link_to "Se connecter", new_session_path("user") unless user_signed_in?

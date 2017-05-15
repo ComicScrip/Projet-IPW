@@ -1,0 +1,13 @@
+= form_for(discipline) do |f|
+  = render 'layouts/error_messages', object: discipline
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :beginsOn
+    = f.date_select :beginsOn
+  .field
+    = f.label :endsOn
+    = f.date_select :endsOn
+  .actions
+    = f.submit

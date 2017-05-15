@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :teached_disciplines, class_name: 'Discipline', inverse_of: 'owner'
+  has_many :teached_disciplines, class_name: 'Discipline', inverse_of: 'owner', foreign_key: 'owner_id'
   has_and_belongs_to_many :studied_disciplines, class_name: 'Discipline'
   has_many :exams, through: :assessments
 

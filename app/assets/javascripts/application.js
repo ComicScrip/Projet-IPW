@@ -13,4 +13,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require select2-full
+//= require select2_locale_fr
 //= require_tree .
+
+// for page-specific JS
+$(document).on('turbolinks:load',function(){
+    var data = $('body').data();
+    $(document).trigger(data.controller + ':loaded');
+    $(document).trigger(data.controller + '#' + data.action + ':loaded');
+});

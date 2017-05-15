@@ -1,0 +1,16 @@
+%p#notice= notice
+%p
+  %strong Name:
+  = @discipline.name
+%p
+  %strong Beginson:
+  = @discipline.beginsOn
+%p
+  %strong Endson:
+  = @discipline.endsOn
+%p
+  %strong Owner:
+  = @discipline.owner
+= link_to 'Edit', edit_discipline_path(@discipline)
+|
+= link_to 'Back', disciplines_path

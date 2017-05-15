@@ -31,9 +31,12 @@ class Ability
 
     user ||= User.new # guest user (not logged in)
     if user.has_role? :admin
-      can :manage, :all
+      can :manage, User
     elsif user.has_role? :teacher
       can :invite, User
+      can :read, User
+      can :manage, Discipline
+      can :manage, Exam
     end
   end
 end

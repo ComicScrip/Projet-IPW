@@ -1,0 +1,6 @@
+%h1 Inscrire des étudiants pour la matière #{@discipline.name}
+%form
+  %input#discipline_id{:type => 'hidden', :value => @discipline.id}
+  %select{:class => "form-control", :id => "discipline_students", :multiple => "multiple"}
+
+  %input#update_discipline_students{type: 'submit', value: 'Enregistrer'}

@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :exam do
-    title "MyString"
+    title "CC1"
     date "2017-05-05"
+    association :discipline, factory: :discipline
   end
 end
