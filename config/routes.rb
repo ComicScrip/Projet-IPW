@@ -23,7 +23,8 @@ Rails.application.routes.draw do
     post 'update_assessments', to: 'exams#update_assessments'
   end
 
-  resources :assessments
+  get 'my_grades', to: 'assessments#get_student_grades'
+
   resources :users, only: [:index, :edit, :destroy, :update]
 
   root 'welcome#index'

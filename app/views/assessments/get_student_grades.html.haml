@@ -1,0 +1,25 @@
+%h1 Mes notes
+- if @general_mean
+  %em moyenne générale : #{@general_mean}
+  %br
+  %br
+
+%table.table.table-bordered
+  %thead
+    %tr
+      %th Matière
+      %th Moyenne de la matière
+      %th Examen
+      %th Date
+      %th Note
+
+  %tbody
+    - @assessments_by_discipline.each do |d|
+      - d[:exams].each_with_index do |e, index|
+        %tr
+          - if index == 0
+            %td{rowspan: d[:exams].size}=d[:name] + " (prof. #{d[:teacher]})"
+            %td{rowspan: d[:exams].size}=d[:mean] || 'pas encore de notes pour cette matière'
+          %td= e[:title]
+          %td= l(e[:date])
+          %td= e[:my_grade] || 'non noté'

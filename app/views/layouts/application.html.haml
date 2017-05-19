@@ -24,6 +24,7 @@
             %li= link_to "Inviter des utilisateurs", new_user_invitation_path if can? :invite, User
             %li= link_to "Gérer mes matières", disciplines_path if can? :manage, Discipline
             %li= link_to "Gérer mes examens", exams_path if can? :manage, Exam
+            %li= link_to "Consulter mes notes", my_grades_path if can? :get_student_grades, Assessment
           %ul.nav.navbar-nav.navbar-right
             %li= link_to "Se déconnecter", destroy_session_path("user") if user_signed_in?
             %li= link_to "Se connecter", new_session_path("user") unless user_signed_in?

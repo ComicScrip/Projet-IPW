@@ -1,64 +1,57 @@
 class AssessmentsController < ApplicationController
   before_action :set_assessment, only: [:show, :edit, :update, :destroy]
 
-  # GET /assessments
-  # GET /assessments.json
-  def index
-    @assessments = Assessment.all
-  end
+  def get_student_grades
+=begin
+@assessments_by_discipline will be like that
+[
+  {
+    name: "d1",
+    owner: 't1',
+    mean: 12
+    exams: [
+        {
+           title : 'e1'
+           date: 2017-05-12
+           my_grade: 12
+        }, ...
+    ]
+  }, ...
+]
+=end
+    @student = current_user
+    @assessments_by_discipline = []
+    discipline_means = []
+    @student.studied_disciplines.each do |d|
+      discipline_grades = []
+      d_hash = {
+          name: d.name,
+          teacher: d.owner.firstName +  ' ' + d.owner.lastName,
+          exams: []
+      }
 
-  # GET /assessments/1
-  # GET /assessments/1.json
-  def show
-  end
-
-  # GET /assessments/new
-  def new
-    @assessment = Assessment.new
-  end
-
-  # GET /assessments/1/edit
-  def edit
-  end
-
-  # POST /assessments
-  # POST /assessments.json
-  def create
-    @assessment = Assessment.new(assessment_params)
-
-    respond_to do |format|
-      if @assessment.save
-        format.html { redirect_to @assessment, notice: 'Assessment was successfully created.' }
-        format.json { render :show, status: :created, location: @assessment }
-      else
-        format.html { render :new }
-        format.json { render json: @assessment.errors, status: :unprocessable_entity }
+      d.exams.each do |e|
+        a = Assessment.find_or_create_by(student: @student, exam: e)
+        e_hash = {
+            title: e.title,
+            date: e.date,
+            my_grade: a.grade
+        }
+        d_hash[:exams] << e_hash
+        discipline_grades << a.grade if a.grade
       end
-    end
-  end
 
-  # PATCH/PUT /assessments/1
-  # PATCH/PUT /assessments/1.json
-  def update
-    respond_to do |format|
-      if @assessment.update(assessment_params)
-        format.html { redirect_to @assessment, notice: 'Assessment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @assessment }
-      else
-        format.html { render :edit }
-        format.json { render json: @assessment.errors, status: :unprocessable_entity }
+      unless discipline_grades.empty?
+        d_mean = discipline_grades.inject{|sum, grade| sum + grade}.to_f / discipline_grades.size
+        d_hash[:mean] = d_mean
+        discipline_means << d_mean
       end
-    end
-  end
 
-  # DELETE /assessments/1
-  # DELETE /assessments/1.json
-  def destroy
-    @assessment.destroy
-    respond_to do |format|
-      format.html { redirect_to assessments_url, notice: 'Assessment was successfully destroyed.' }
-      format.json { head :no_content }
+      @assessments_by_discipline << d_hash
     end
+
+    @general_mean = nil
+    @general_mean = discipline_means.inject{|sum, grade| sum + grade}.to_f / discipline_means.size unless discipline_means.empty?
   end
 
   private
