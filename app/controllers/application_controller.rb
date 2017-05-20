@@ -29,9 +29,11 @@ class ApplicationController < ActionController::Base
   end
 
   protected
-    def authenticate_user!
+    def authenticate_user!(opts={})
       if user_signed_in?
         super
+        opts[:scope] = :user
+        warden.authenticate!(opts) if !devise_controller? || opts.delete(:force)
       else
         redirect_to new_user_session_path
       end
