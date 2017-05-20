@@ -59,3 +59,7 @@ server 'pierre-genthon.duckdns.org', user: 'root', roles: %w{app web db}, ssh_op
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
+
+set :nginx_use_ssl, true
+set :nginx_ssl_certificate, "/etc/letsencrypt/live/assessme.pierre-genthon.duckdns.org/cert.pem"
+set :nginx_ssl_certificate_key, "/etc/letsencrypt/live/assessme.pierre-genthon.duckdns.org/privkey.pem"
