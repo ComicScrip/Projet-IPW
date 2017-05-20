@@ -1,4 +1,4 @@
-%h1 Mes notes
+%h1.text-center Mes notes
 - if @general_mean
   %em moyenne générale : #{@general_mean}
   %br
@@ -18,8 +18,13 @@
       - d[:exams].each_with_index do |e, index|
         %tr
           - if index == 0
-            %td{rowspan: d[:exams].size}=d[:name] + " (prof. #{d[:teacher]})"
-            %td{rowspan: d[:exams].size}=d[:mean] || 'pas encore de notes pour cette matière'
+            %td{rowspan: d[:exams].size}
+              =d[:name]
+              %br
+              %em
+                Enseignant :
+                =mail_to(d[:teacher_email], d[:teacher])
+            %td{rowspan: d[:exams].size}=d[:mean] || 'pas de notes pour cette matière'
           %td= e[:title]
           %td= l(e[:date])
           %td= e[:my_grade] || 'non noté'

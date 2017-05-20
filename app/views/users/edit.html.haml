@@ -1,9 +1,10 @@
-%h1 Edition du compte de #{@user.firstName} #{@user.lastName}
+%h1.text-center Edition du compte de #{@user.firstName} #{@user.lastName}
+.vertical-spacer-sm
 
-= form_for @user do |f|
+= bootstrap_form_for @user do |f|
   = render 'layouts/error_messages', object: @user
+
   .field
-    = f.label :approved
     = f.check_box :approved
 
   %h2 Roles
@@ -16,20 +17,16 @@
   %h2 Informations du profil
 
   .field
-    = f.label :firstName
-    %br/
     = f.text_field :firstName
   .field
-    = f.label :lastName
-    %br/
     = f.text_field :lastName
   .field
-    = f.label :email
-    %br/
     = f.email_field :email, autofocus: true
   .field
 
   .actions
     = f.submit "Mettre à jour"
+
+.vertical-spacer-sm
 
 = link_to 'Revenir à la liste des utilisateurs', users_path

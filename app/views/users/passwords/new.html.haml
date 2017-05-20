@@ -1,10 +1,8 @@
-%h2 Mot de passe oublié ?
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-
+%h1.text-center Mot de passe oublié ?
+= bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
   .field
-    = f.label :email
-    %br/
     = f.email_field :email, autofocus: true
   .actions
     = f.submit "Envoyez moi les instructions pour réinitiliser mon mot de passe"
+.vertical-spacer-sm
 = render "users/shared/links"

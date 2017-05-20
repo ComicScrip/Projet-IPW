@@ -77,6 +77,4 @@ gem 'html2haml'
 #JS plugins
 gem 'select2-rails'
 
-
-
-
+gem 'bootstrap_form'

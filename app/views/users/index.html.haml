@@ -1,20 +1,22 @@
-%h1
+%h1.text-center
   Gestion des utilisateurs
+.vertical-spacer-sm
 
-%table.table
-  %tr
-    %th Prénom
-    %th Nom
-    %th Email
-    %th Validé par un administrateur
-    %th Modifier
-    %th Supprimer
-
-  - @users.each do |user|
+%table.table.table-striped
+  %thead
     %tr
-      %td= user.firstName
-      %td= user.lastName
-      %td= mail_to user.email
-      %td= user.approved ? 'Oui' : 'Non'
-      %td= link_to 'Modifier', edit_user_path(user)
-      %td= link_to 'Supprimer', user_path(user), method: :delete, data: { confirm: 'êtes vous sûr ?' }
+      %th Prénom
+      %th Nom
+      %th Email
+      %th Validé par un administrateur
+      %th Modifier
+      %th Supprimer
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.firstName
+        %td= user.lastName
+        %td= mail_to user.email
+        %td= user.approved ? 'Oui' : 'Non'
+        %td= link_to 'Modifier', edit_user_path(user)
+        %td= link_to 'Supprimer', user_path(user), method: :delete, data: { confirm: 'êtes vous sûr ?' }

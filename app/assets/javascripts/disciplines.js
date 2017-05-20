@@ -24,8 +24,9 @@ $(document).on('disciplines#edit_students:loaded', function(){
                     '<div class="flash alert alert-dismissable alert-success">' +
                     '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
                     'La liste des étudiants a bien été mise à jour.</div>';
-
-                $('#flash_messages').append(successFlash);
+                successFlash = $(successFlash);
+                $('#flash_messages').empty();
+                successFlash.appendTo($('#flash_messages')).hide().slideDown(500);
             }
         });
     });

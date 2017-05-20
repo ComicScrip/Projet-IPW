@@ -1,29 +1,20 @@
-%h2 Demander la creation d'un compte
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+%h1.text-center Demander la création d'un compte
+= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   = render 'layouts/error_messages', object: resource
   .field
-    = f.label :firstName
-    %br/
     = f.text_field :firstName
   .field
-    = f.label :lastName
-    %br/
     = f.text_field :lastName
   .field
-    = f.label :email
-    %br/
     = f.email_field :email, autofocus: true
   .field
-    = f.label :password
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} caractères minimum)
-    %br/
-    = f.password_field :password, autocomplete: "off"
+    - pwLengthIndication = ' (' + @minimum_password_length.to_s + ' caractères minimum)'
+    = f.password_field :password, autocomplete: "off", label: 'Mot de passe ' + pwLengthIndication
   .field
-    = f.label :password_confirmation
-    %br/
     = f.password_field :password_confirmation, autocomplete: "off"
+  .vertical-spacer-sm
   .actions
     = f.submit "Valider"
+
+.vertical-spacer-sm
 = render "users/shared/links"

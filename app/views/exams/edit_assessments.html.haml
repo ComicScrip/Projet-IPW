@@ -1,20 +1,25 @@
-%h1 Edition des notes pour l'examen #{@exam.title} (#{@exam.discipline.name})
-%br
+%h1.text-center Edition des notes pour l'examen #{@exam.title} (#{@exam.discipline.name})
+.vertical-spacer-sm
 
 - if not @exam.discipline.students.empty?
-  = form_tag exam_update_assessments_path(@exam) do
-    %table.table
-      %tr
-        %th Etudiant
-        %th Note
-      - @assessments.each do |a|
+  = bootstrap_form_tag url: exam_update_assessments_path(@exam.id) do
+    %table.table.table-striped
+      %thead
         %tr
-          %td= a.student.firstName + ' ' + a.student.lastName
-          %td= number_field_tag 'assessments[' + a.id.to_s + '][grade]', a.grade, {min: '0', max: '20'}
+          %th Etudiant
+          %th Note
+      %tbody
+        - @assessments.each do |a|
+          %tr
+            %td= a.student.firstName + ' ' + a.student.lastName
+            %td= number_field_tag 'assessments[' + a.id.to_s + '][grade]', a.grade, {min: '0', max: '20', class: 'form-control'}
 
-    = button_tag 'Enregistrer'
+    = button_tag 'Enregistrer', class: 'btn btn-primary'
 
-  = link_to 'Retour à la liste des examens', exams_path
 - else
   %p Aucun étudiant n'est inscrit à la matière #{@exam.discipline.name}...
-  = link_to 'Inscrire des étudiants à la matière ' + @exam.discipline.name, discipline_edit_students_path(@exam.discipline)
+
+.vertical-spacer-sm
+= link_to 'Inscrire des étudiants à la matière ' + @exam.discipline.name, discipline_edit_students_path(@exam.discipline)
+.vertical-spacer-sm
+  = link_to 'Retour à la liste des examens', exams_path

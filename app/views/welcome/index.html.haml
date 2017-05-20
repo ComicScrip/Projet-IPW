@@ -1,0 +1,24 @@
+%style
+  body { background: url("#{asset_url('welcome_bg.png')}") no-repeat; background-size: 100%;}
+
+%div#welcome_page_container
+  %h1.title AssessMe
+  %h2.title.subtitle La gestion de notes sans prise de tête
+  #app-presentation
+    %p
+      AssessMe est un outil de liaison entre les professeurs et les élèves.
+    %p.catchy
+      Vous êtes enseignant ?
+    %ul
+      %li Invitez vos étudiants directement depuis l'application
+      %li Gérer vos matières, vos examens et vos notes en toute facilité !
+    %p.catchy
+      Vous êtes étudiant ?
+    %ul
+      %li Consultez vos notes n'a jamais été aussi simple !
+
+  .welcome-page-btn
+    = link_to 'Connectez-vous', new_session_path('user'), class: 'btn btn-primary btn-lg'
+    %br
+    %br
+    = link_to 'Demandez votre inscription' , new_registration_path('user'), class: 'btn btn-success btn-lg'

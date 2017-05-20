@@ -1,22 +1,28 @@
-%h1
+%h1.text-center
   Mes Examens
 
-%table.table
-  %tr
-    %th Nom de la matière
-    %th Titre de l'examen
-    %th Date de l'examen
-    %th Gestion des notes
-    %th Modifier
-    %th Supprimer
+.vertical-spacer-sm
 
-  - @exams.each do |e|
+.text-center
+  = link_to 'Ajouter un examen', new_exam_path, class: 'btn btn-primary'
+.vertical-spacer-sm
+.vertical-spacer-sm
+%table.table.table-striped
+  %thead
     %tr
-      %td= e.discipline.name
-      %td= e.title
-      %td= e.date
-      %td= link_to 'Gérer les notes', exam_edit_assessments_path(e)
-      %td= link_to 'Modifier', edit_exam_path(e)
-      %td= link_to 'Supprimer', exam_path(e), method: :delete, data: { confirm: 'êtes vous sûr ?' }
+      %th Nom de la matière
+      %th Titre de l'examen
+      %th Date de l'examen
+      %th Gestion des notes
+      %th Modifier
+      %th Supprimer
 
-= link_to 'Ajouter un examen', new_exam_path
+  %tbody
+    - @exams.each do |e|
+      %tr
+        %td= e.discipline.name
+        %td= e.title
+        %td= l e.date
+        %td= link_to 'Gérer les notes', exam_edit_assessments_path(e)
+        %td= link_to 'Modifier', edit_exam_path(e)
+        %td= link_to 'Supprimer', exam_path(e), method: :delete, data: { confirm: 'êtes vous sûr ?' }

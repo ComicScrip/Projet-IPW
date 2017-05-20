@@ -10,6 +10,7 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require rails_bootstrap_forms
  *= require_tree .
  *= require_self
  *= require select2
@@ -17,13 +18,65 @@
  */
 
 #main-content {
-    min-height: 1000px;
+    min-height: 700px;
 }
 
 footer {
     padding-top: 30px;
-    border-top: 1px solid #dddddd;
+    border-top: 1px solid #2f2f2f;
     height: 100px;
     margin-top : 50px;
-    background-color: #f8f8f8;
+    background-color: #141415;
+    color: #BBBBBB;
 }
+
+#welcome_page_container{
+    color: white;
+}
+
+.welcome-page-btn {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.welcome-page-btn.btn {
+    margin: 10px;
+}
+
+.title {
+    text-align: center;
+    font-size: 4em;
+    letter-spacing: 2px;
+    color: #d02424;
+}
+
+.subtitle {
+    font-size: 2.5em;
+    color: #b8860b;
+}
+
+#app-presentation {
+    margin-top : 50px;
+    font-size: 2em;
+    text-align: center;
+}
+
+#app-presentation li:before
+{
+    content: '✔';
+    margin-left: -1em;
+    margin-right: .100em;
+}
+
+#app-presentation li {
+    list-style-type: none;
+}
+
+#app-presentation .catchy{
+    color: #b8860b;
+}
+
+.vertical-spacer-sm {
+    height: 15px;
+}
+

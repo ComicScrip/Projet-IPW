@@ -1,13 +1,10 @@
-= form_for(exam) do |f|
+= bootstrap_form_for(exam) do |f|
   = render 'layouts/error_messages', object: exam
   .field
-    = f.label :discipline
     = f.collection_select(:discipline_id, current_user.teached_disciplines, :id, :name)
   .field
-    = f.label :title
     = f.text_field :title
   .field
-    = f.label :date
     = f.date_select :date
   .actions
     = f.submit

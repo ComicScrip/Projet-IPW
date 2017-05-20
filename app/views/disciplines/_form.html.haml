@@ -1,13 +1,14 @@
-= form_for(discipline) do |f|
+= bootstrap_form_for(discipline) do |f|
   = render 'layouts/error_messages', object: discipline
   .field
-    = f.label :name
     = f.text_field :name
-  .field
-    = f.label :beginsOn
-    = f.date_select :beginsOn
-  .field
-    = f.label :endsOn
-    = f.date_select :endsOn
+  .row
+    .col-md-6
+      .field
+        = f.date_select :beginsOn
+    .col-md-6
+      .field
+        = f.date_select :endsOn
+  .vertical-spacer-sm
   .actions
-    = f.submit
+    = f.submit "Enregistrer", :class => "btn btn-default";

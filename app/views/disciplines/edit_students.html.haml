@@ -1,6 +1,10 @@
-%h1 Inscrire des étudiants pour la matière #{@discipline.name}
+%h1.text-center Inscrire des étudiants pour la matière #{@discipline.name}
+.vertical-spacer-sm
 %form
   %input#discipline_id{:type => 'hidden', :value => @discipline.id}
   %select{:class => "form-control", :id => "discipline_students", :multiple => "multiple"}
 
-  %input#update_discipline_students{type: 'submit', value: 'Enregistrer'}
+  .vertical-spacer-sm
+  .vertical-spacer-sm
+  .text-center
+    %input#update_discipline_students{class: 'btn btn-primary', type: 'submit', value: 'Enregistrer'}

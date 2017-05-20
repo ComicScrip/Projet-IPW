@@ -2,23 +2,6 @@ class AssessmentsController < ApplicationController
   before_action :set_assessment, only: [:show, :edit, :update, :destroy]
 
   def get_student_grades
-=begin
-@assessments_by_discipline will be like that
-[
-  {
-    name: "d1",
-    owner: 't1',
-    mean: 12
-    exams: [
-        {
-           title : 'e1'
-           date: 2017-05-12
-           my_grade: 12
-        }, ...
-    ]
-  }, ...
-]
-=end
     @student = current_user
     @assessments_by_discipline = []
     discipline_means = []
@@ -27,6 +10,7 @@ class AssessmentsController < ApplicationController
       d_hash = {
           name: d.name,
           teacher: d.owner.firstName +  ' ' + d.owner.lastName,
+          teacher_email: d.owner.email,
           exams: []
       }
 

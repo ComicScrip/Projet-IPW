@@ -1,6 +1,14 @@
 class Users::InvitationsController < Devise::InvitationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def create
+    super do |u|
+      if not u.valid?
+        return render :new
+      end
+    end
+  end
+
   def update
     super do |u|
       # an invited user is automatically approved

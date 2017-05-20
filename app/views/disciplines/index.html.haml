@@ -1,22 +1,28 @@
-%h1
+%h1.text-center
   Mes matières
 
-%table.table
-  %tr
-    %th Nom
-    %th Début des interventions
-    %th Fin des interventions
-    %th Modifier
-    %th Supprimer
-    %th Gestion des étudiants
+.vertical-spacer-sm
+.text-center
+  = link_to 'Ajouter une matière', new_discipline_path, class: 'btn btn-primary'
+.vertical-spacer-sm
+.vertical-spacer-sm
 
-  - @disciplines.each do |d|
+%table.table.table-striped
+  %thead
     %tr
-      %td= d.name
-      %td= d.beginsOn
-      %td= d.endsOn
-      %td= link_to 'Modifier', edit_discipline_path(d)
-      %td= link_to 'Supprimer', discipline_path(d), method: :delete, data: { confirm: 'êtes vous sûr ?' }
-      %td= link_to 'gérer les étudiants', discipline_edit_students_path(d)
+      %th Nom
+      %th Début des interventions
+      %th Fin des interventions
+      %th Modifier
+      %th Supprimer
+      %th Gestion des étudiants
 
-= link_to 'Ajouter une matière', new_discipline_path
+  %tbody
+    - @disciplines.each do |d|
+      %tr
+        %td= d.name
+        %td= l d.beginsOn
+        %td= l d.endsOn
+        %td= link_to 'Modifier', edit_discipline_path(d)
+        %td= link_to 'Supprimer', discipline_path(d), method: :delete, data: { confirm: 'êtes vous sûr ?' }
+        %td= link_to 'Gérer les étudiants', discipline_edit_students_path(d)

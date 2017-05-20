@@ -23,3 +23,7 @@ $(document).on('turbolinks:load',function(){
     $(document).trigger(data.controller + ':loaded');
     $(document).trigger(data.controller + '#' + data.action + ':loaded');
 });
+
+setTimeout(function () {
+    $('#flash_messages').slideUp(200);
+}, 3000);
