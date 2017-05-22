@@ -1,0 +1,7 @@
+%p Bonjour #{@student.firstName} !
+
+- teacherName = @exam.discipline.owner.firstName + ' ' + @exam.discipline.owner.lastName
+%p #{teacherName} viens de déposer votre note pour l'examen du #{l @exam.date} sur #{link_to 'Assessme', root_url}
+%p #{link_to 'Cliquez ici', new_user_session_url} pour consulter votre note.
+%img{src: image_path('doigts.gif'), alt: 'On croise les doigts !'}
+%p A très bientôt !
