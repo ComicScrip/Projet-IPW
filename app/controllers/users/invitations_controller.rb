@@ -2,6 +2,7 @@ class Users::InvitationsController < Devise::InvitationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def create
+    @inviter = current_user
     super do |u|
       if not u.valid?
         return render :new
@@ -20,6 +21,16 @@ class Users::InvitationsController < Devise::InvitationsController
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:invite) do |u|
         u.permit(:email, :lastName, :firstName)
+      end
+    end
+
+    def current_inviter
+      current_user
+    end
+
+    def invite_resource
+      resource_class.invite!(invite_params, current_inviter) do |invitable|
+        invitable.add_role(:student)
       end
     end
 end
