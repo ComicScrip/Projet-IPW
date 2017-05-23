@@ -1,5 +1,6 @@
 class Users::InvitationsController < Devise::InvitationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
+  skip_before_filter :authenticate_user!, only: [:edit, :update]
 
   def create
     @inviter = current_user
