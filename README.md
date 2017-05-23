@@ -47,4 +47,13 @@ Creer un fichier 'config/local_env.yml' avec le contenu suivant :
 # Identifiants Gmail qui seront utilisés pour l'envoi de mails à partir de l'application
 ASSESSME_GMAIL_ACCOUNT : <votre adresse gmail>
 ASSESSME_GMAIL_PASSWORD : <le mot de passe de votre compte>
+ASSESSME_ADMIN_EMAIL: <email de l'admin par défaut>
+ASSESSME_ADMIN_PASSWORD: <mot de passe par défaut de l'admin>
 ```
+
+## Initialisation de la BDD
+```bash
+$rails db:migrate && rails db:seed
+```
+
+Ces commandes créront les tables dans la base de donnée, ainsi que le compte administrateur et les rôles par défaut. 

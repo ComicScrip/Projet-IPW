@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  # authentication required on every
+  # authentication required on every page
   before_filter :authenticate_user!
 
   rescue_from CanCan::AccessDenied do |exception|
