@@ -74,6 +74,8 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
+    data_migrate (3.0.1)
+      rails (>= 4.0)
     devise (4.2.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -276,6 +278,7 @@ DEPENDENCIES
   capistrano-rbenv
   capistrano3-puma
   coffee-rails (~> 4.2)
+  data_migrate
   devise
   devise_invitable
   factory_girl_rails

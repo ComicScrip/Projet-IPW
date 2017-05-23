@@ -53,7 +53,7 @@ ASSESSME_ADMIN_PASSWORD: <mot de passe par défaut de l'admin>
 
 ## Initialisation de la BDD
 ```bash
-$rails db:migrate && rails db:seed
+$ rails db:migrate:with_data
 ```
 
-Ces commandes créront les tables dans la base de donnée, ainsi que le compte administrateur et les rôles par défaut. 
+Cette commande créera les tables dans la base de donnée, ainsi que le compte administrateur et les rôles par défaut. 

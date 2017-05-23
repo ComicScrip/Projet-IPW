@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  # authentication required on every page
+  # authentication required everywhere by default
   before_filter :authenticate_user!
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -12,8 +12,11 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
+    referer_url_without_params = request.referer.split('?').first || nil
     sign_in_url = new_user_session_url
-    if request.referer == sign_in_url
+    edit_invitation_url = accept_user_invitation_url
+
+    if referer_url_without_params == sign_in_url
       if current_user.has_role? :student
         return my_grades_path
       elsif current_user.has_role? :teacher
@@ -23,6 +26,8 @@ class ApplicationController < ActionController::Base
       else
         return root_path
       end
+    elsif referer_url_without_params == edit_invitation_url
+      return root_path
     else
       stored_location_for(resource) || request.referer || root_path
     end

@@ -25,6 +25,11 @@ ActiveRecord::Schema.define(version: 20170505153522) do
     t.index ["student_id"], name: "index_assessments_on_student_id", using: :btree
   end
 
+  create_table "data_migrations", id: false, force: :cascade do |t|
+    t.string "version", null: false
+    t.index ["version"], name: "unique_data_migrations", unique: true, using: :btree
+  end
+
   create_table "disciplines", force: :cascade do |t|
     t.string   "name"
     t.date     "beginsOn"

@@ -31,6 +31,7 @@ require "capistrano/rbenv"
 require "capistrano/bundler"
 require "capistrano/rails"
 require "capistrano/puma"
+require "capistrano/data_migrate"
 
 install_plugin Capistrano::Puma  # Default puma tasks
 install_plugin Capistrano::Puma::Workers  # if you want to control the workers (in cluster mode)

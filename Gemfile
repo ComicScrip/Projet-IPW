@@ -65,16 +65,22 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # User management
 gem 'devise'
 gem 'devise_invitable'
+
 # authorization management
 gem 'cancancan'
+
 # roles management
 gem 'rolify'
+
+# Data migration support
+gem 'data_migrate'
 
 # HAML template engine for views
 gem 'haml'
 gem 'html2haml'
 
+# bootstrap forms
+gem 'bootstrap_form'
+
 #JS plugins
 gem 'select2-rails'
-
-gem 'bootstrap_form'
